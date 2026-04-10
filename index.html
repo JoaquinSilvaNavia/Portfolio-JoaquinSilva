@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luis Joaquín Silva — Control de Gestión & Data Analytics</title>
+  <meta name="description" content="Portfolio de Luis Joaquín Silva Navia — Especialista en Control de Gestión, Automatización y Business Intelligence." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #2C3E50;
+      --orange: #E67E22;
+      --orange-light: #F39C12;
+      --white:  #FFFFFF;
+      --bg:     #F8F9FA;
+      --card:   #FFFFFF;
+      --text:   #333333;
+      --muted:  #666666;
+      --border: #E0E0E0;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { color: var(--orange-light); }
+
+    /* ── NAV ──────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(44,62,80,0.97);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      height: 58px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .nav-brand {
+      font-weight: 700; font-size: 1rem; color: var(--white);
+      letter-spacing: 0.03em;
+    }
+    .nav-brand span { color: var(--orange); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      color: rgba(255,255,255,0.82); font-size: 0.88rem;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cv {
+      background: var(--orange); color: var(--white) !important;
+      padding: 0.3rem 0.9rem; border-radius: 20px;
+      font-weight: 600; transition: background 0.2s !important;
+    }
+    .nav-cv:hover { background: var(--orange-light) !important; color: var(--white) !important; }
+    @media (max-width: 700px) {
+      .nav-links { gap: 0.8rem; }
+      .nav-links a { font-size: 0.78rem; }
+    }
+
+    /* ── SECTIONS ─────────────────────────────────────────────── */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.65rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.5rem;
+    }
+    .section-title::after {
+      content: ''; display: block; width: 44px; height: 3px;
+      background: var(--orange); margin-top: 8px; border-radius: 2px;
+    }
+    .section-sub {
+      color: var(--muted); font-size: 0.97rem; margin-bottom: 2.5rem;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    #hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a252f 100%);
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 6rem 1.5rem 4rem;
+    }
+    .hero-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 180px; height: 180px; border-radius: 50%;
+      border: 4px solid var(--orange);
+      overflow: hidden; background: #3d5166;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 8px rgba(230,126,34,0.18);
+    }
+    .hero-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .hero-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5); font-size: 0.75rem; text-align: center; gap: 6px;
+    }
+    .hero-photo-placeholder svg { opacity: 0.4; }
+    .hero-text { flex: 1; min-width: 260px; }
+    .hero-text h1 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.2; margin-bottom: 0.4rem;
+    }
+    .hero-text .hero-role {
+      font-size: 1.05rem; color: var(--orange);
+      font-weight: 500; margin-bottom: 1.2rem;
+    }
+    .hero-text p {
+      color: rgba(255,255,255,0.75); font-size: 0.97rem;
+      max-width: 540px; margin-bottom: 2rem; line-height: 1.7;
+    }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 2rem; }
+    .badge {
+      background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.88);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.25rem 0.75rem; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 500;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--orange); color: var(--white);
+      padding: 0.65rem 1.5rem; border-radius: 6px;
+      font-weight: 600; font-size: 0.92rem;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .btn-primary:hover { background: var(--orange-light); transform: translateY(-1px); color: var(--white); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.88);
+      padding: 0.65rem 1.5rem; border-radius: 6px;
+      font-weight: 600; font-size: 0.92rem;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .btn-outline:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-1px); }
+
+    /* ── SOBRE MÍ ─────────────────────────────────────────────── */
+    #sobre-mi { background: var(--white); }
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
+      align-items: start;
+    }
+    .sobre-grid p { color: var(--text); line-height: 1.75; margin-bottom: 1rem; }
+    .highlights { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .highlights li {
+      display: flex; gap: 0.8rem; align-items: flex-start;
+    }
+    .hl-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(230,126,34,0.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1rem;
+    }
+    .hl-text strong { display: block; font-size: 0.9rem; color: var(--navy); }
+    .hl-text span { font-size: 0.83rem; color: var(--muted); }
+    @media (max-width: 700px) {
+      .sobre-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── ARQUITECTURA ─────────────────────────────────────────── */
+    #arquitectura { background: var(--bg); }
+    .arch-diagram {
+      background: var(--navy);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 0;
+      overflow-x: auto;
+    }
+    .arch-step {
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      min-width: 110px;
+    }
+    .arch-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px; padding: 0.75rem 1rem;
+      color: var(--white); font-size: 0.82rem;
+      text-align: center; font-weight: 500;
+      line-height: 1.3;
+    }
+    .arch-label {
+      font-size: 0.7rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .arch-arrow {
+      color: var(--orange); font-size: 1.4rem;
+      padding: 0 0.5rem; align-self: center; flex-shrink: 0;
+    }
+
+    /* ── PROYECTOS ────────────────────────────────────────────── */
+    #proyectos { background: var(--white); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .card-img {
+      width: 100%; height: 180px; object-fit: cover;
+      background: linear-gradient(135deg, #2C3E50, #3D6B8A);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5); font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .card-img.placeholder { flex-direction: column; gap: 8px; }
+    .card-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem; }
+    .tag {
+      background: rgba(230,126,34,0.1); color: var(--orange);
+      font-size: 0.72rem; font-weight: 600; padding: 0.15rem 0.55rem;
+      border-radius: 12px; letter-spacing: 0.02em;
+    }
+    .card-title {
+      font-size: 1rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .card-desc {
+      font-size: 0.87rem; color: var(--muted);
+      line-height: 1.6; flex: 1; margin-bottom: 1rem;
+    }
+    .card-footer {
+      display: flex; gap: 0.7rem; align-items: center;
+      border-top: 1px solid var(--border); padding-top: 0.9rem;
+    }
+    .card-link {
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--navy); display: flex; align-items: center; gap: 0.3rem;
+      transition: color 0.2s;
+    }
+    .card-link:hover { color: var(--orange); }
+    .card-link.live {
+      background: var(--orange); color: var(--white);
+      padding: 0.3rem 0.8rem; border-radius: 20px;
+      font-size: 0.78rem;
+    }
+    .card-link.live:hover { background: var(--orange-light); color: var(--white); }
+
+    /* ── HABILIDADES ──────────────────────────────────────────── */
+    #habilidades { background: var(--bg); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group {
+      background: var(--white); border-radius: var(--radius);
+      padding: 1.4rem; box-shadow: var(--shadow);
+      border-top: 3px solid var(--orange);
+    }
+    .skill-group h3 {
+      font-size: 0.88rem; font-weight: 700; color: var(--orange);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .skill-list li {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.87rem; color: var(--text);
+    }
+    .skill-list li::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--orange); flex-shrink: 0;
+    }
+
+    /* ── FORMACIÓN ────────────────────────────────────────────── */
+    #formacion { background: var(--white); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 6px; top: 0; bottom: 0;
+      width: 2px; background: var(--border);
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 2rem;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -1.72rem; top: 5px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--orange); border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--orange);
+    }
+    .timeline-year {
+      font-size: 0.78rem; font-weight: 600; color: var(--orange);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-title {
+      font-size: 0.97rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 0.15rem;
+    }
+    .timeline-institution {
+      font-size: 0.85rem; color: var(--muted);
+    }
+
+    /* ── CONTACTO ─────────────────────────────────────────────── */
+    #contacto {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a252f 100%);
+    }
+    #contacto .section-title { color: var(--white); }
+    #contacto .section-title::after { background: var(--orange); }
+    #contacto .section-sub { color: rgba(255,255,255,0.65); }
+    .contact-grid {
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius); padding: 1.4rem 1.8rem;
+      display: flex; align-items: center; gap: 1rem;
+      flex: 1; min-width: 220px;
+      transition: background 0.2s;
+    }
+    .contact-card:hover { background: rgba(255,255,255,0.12); }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(230,126,34,0.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1.2rem;
+    }
+    .contact-info span {
+      display: block; font-size: 0.75rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px;
+    }
+    .contact-info a, .contact-info strong {
+      font-size: 0.9rem; color: var(--white); font-weight: 500;
+    }
+    .contact-info a:hover { color: var(--orange); }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      background: #131d26; color: rgba(255,255,255,0.45);
+      text-align: center; padding: 1.5rem;
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--orange); }
+
+    /* ── ANIMATIONS ───────────────────────────────────────────── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-brand">Luis J. <span>Silva</span></div>
+  <div class="nav-links">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#habilidades">Skills</a>
+    <a href="#formacion">Formación</a>
+    <a href="CV_Luis_Silva_2026.pdf" class="nav-cv" download>&#8615; CV</a>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-inner">
+
+    <div class="hero-photo" id="photoContainer">
+      <!-- Reemplaza esta sección con tu foto:
+           <img src="images/foto.jpg" alt="Luis Joaquín Silva" />
+      -->
+      <div class="hero-photo-placeholder">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="rgba(255,255,255,0.6)">
+          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+        </svg>
+        <span>Agregar foto<br/>profesional</span>
+      </div>
+    </div>
+
+    <div class="hero-text">
+      <h1>Luis Joaquín<br/>Silva Navia</h1>
+      <p class="hero-role">Control de Gestión Estratégico &nbsp;|&nbsp; Data Analytics &nbsp;|&nbsp; Automatización</p>
+      <p>
+        Especialista en transformar departamentos financieros tradicionales en centros de control
+        estratégico, integrando Python, BI y metodologías LEAN para generar valor real en el negocio.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">Python</span>
+        <span class="badge">Power BI</span>
+        <span class="badge">SAP FI/CO</span>
+        <span class="badge">Google Sheets API</span>
+        <span class="badge">LEAN / Mejora Continua</span>
+        <span class="badge">SQL Server</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#proyectos" class="btn-primary">Ver proyectos &#8595;</a>
+        <a href="CV_Luis_Silva_2026.pdf" class="btn-outline" download>&#8615; Descargar CV</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── SOBRE MÍ ───────────────────────────────────────────────────── -->
+<section id="sobre-mi">
+  <div class="container fade-in">
+    <h2 class="section-title">Sobre mí</h2>
+    <p class="section-sub">Especialista en Control de Gestión con foco en tecnología e impacto estratégico</p>
+    <div class="sobre-grid">
+      <div>
+        <p>
+          Me diferencio por integrar una sólida base financiera con herramientas tecnológicas avanzadas
+          (Python, Automatización, IA), permitiéndome no solo reportar resultados, sino
+          <strong>transformar los procesos que los generan</strong>.
+        </p>
+        <p>
+          Sólida trayectoria modernizando departamentos financieros mediante metodologías LEAN y
+          digitalización. Mi visión macro del negocio me permite diseñar KPIs estratégicos que detectan
+          desviaciones en tiempo real, maximizando la rentabilidad.
+        </p>
+        <p>
+          Actualmente liderando la transformación digital en Embotelladora Metropolitana S.A.,
+          migrando de un enfoque contable tradicional a un modelo de <strong>Control de Gestión basado en datos</strong>.
+        </p>
+      </div>
+      <ul class="highlights">
+        <li>
+          <div class="hl-icon">📊</div>
+          <div class="hl-text">
+            <strong>Dashboards en producción</strong>
+            <span>5 sistemas interconectados con datos en tiempo real</span>
+          </div>
+        </li>
+        <li>
+          <div class="hl-icon">⚡</div>
+          <div class="hl-text">
+            <strong>Automatización de procesos</strong>
+            <span>Reducción del 30% en carga operativa mediante ETL Python</span>
+          </div>
+        </li>
+        <li>
+          <div class="hl-icon">🏭</div>
+          <div class="hl-text">
+            <strong>Implementación LEAN</strong>
+            <span>KPIs para detectar desperdicios en la cadena de valor</span>
+          </div>
+        </li>
+        <li>
+          <div class="hl-icon">🎓</div>
+          <div class="hl-text">
+            <strong>2 Diplomados PUC</strong>
+            <span>Control de Gestión y Planificación Estratégica</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── ARQUITECTURA ───────────────────────────────────────────────── -->
+<section id="arquitectura">
+  <div class="container fade-in">
+    <h2 class="section-title">Arquitectura del Sistema</h2>
+    <p class="section-sub">Pipeline de datos de extremo a extremo: desde SQL Server hasta dashboards en GitHub Pages</p>
+    <div class="arch-diagram">
+      <div class="arch-step">
+        <div class="arch-box">SQL Server<br/>(INET ERP)</div>
+        <div class="arch-label">Fuente</div>
+      </div>
+      <div class="arch-arrow">&#8250;</div>
+      <div class="arch-step">
+        <div class="arch-box">Python ETL<br/>pyodbc + pandas</div>
+        <div class="arch-label">Procesamiento</div>
+      </div>
+      <div class="arch-arrow">&#8250;</div>
+      <div class="arch-step">
+        <div class="arch-box">Google Sheets<br/>API (gspread)</div>
+        <div class="arch-label">Almacén</div>
+      </div>
+      <div class="arch-arrow">&#8250;</div>
+      <div class="arch-step">
+        <div class="arch-box">HTML5 + JS<br/>Dashboards</div>
+        <div class="arch-label">Visualización</div>
+      </div>
+      <div class="arch-arrow">&#8250;</div>
+      <div class="arch-step">
+        <div class="arch-box">GitHub Pages<br/>Hosting</div>
+        <div class="arch-label">Distribución</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROYECTOS ─────────────────────────────────────────────────── -->
+<section id="proyectos">
+  <div class="container fade-in">
+    <h2 class="section-title">Proyectos</h2>
+    <p class="section-sub">Dashboards y sistemas de automatización desarrollados en producción</p>
+    <div class="projects-grid">
+
+      <!-- VENTAS -->
+      <div class="card">
+        <div class="card-img">
+          <img src="images/costeo1.png" alt="Dashboard de Ventas" onerror="this.parentElement.innerHTML='<div style=\'color:rgba(255,255,255,0.6);font-size:0.85rem;text-align:center;\'>📈<br/>Dashboard Ventas</div>'" />
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <h3 class="card-title">Dashboard de Ventas</h3>
+          <p class="card-desc">
+            Analítica de ventas en tiempo real conectada a SQL Server. ETL automatizado con Python,
+            visualización dinámica con actualización horaria para decisiones de gestión comercial.
+          </p>
+          <div class="card-footer">
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-ventas" class="card-link" target="_blank" rel="noopener">
+              &#60;/&#62; GitHub
+            </a>
+            <a href="https://joaquinsilvanavia.github.io/emsa-ventas/" class="card-link live" target="_blank" rel="noopener">
+              &#9654; Ver demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLIENTES -->
+      <div class="card">
+        <div class="card-img">
+          <img src="images/costeo2.png" alt="Dashboard de Clientes" onerror="this.parentElement.innerHTML='<div style=\'color:rgba(255,255,255,0.6);font-size:0.85rem;text-align:center;\'>👥<br/>Dashboard Clientes</div>'" />
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">SQL Server</span>
+            <span class="tag">gspread</span>
+          </div>
+          <h3 class="card-title">Dashboard de Clientes</h3>
+          <p class="card-desc">
+            Gestión y seguimiento de cartera de clientes. Control de cuentas por cobrar, aging de
+            deuda y alertas de vencimiento integradas desde el ERP en tiempo real.
+          </p>
+          <div class="card-footer">
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-clientes" class="card-link" target="_blank" rel="noopener">
+              &#60;/&#62; GitHub
+            </a>
+            <a href="https://joaquinsilvanavia.github.io/emsa-clientes/" class="card-link live" target="_blank" rel="noopener">
+              &#9654; Ver demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- STOCK -->
+      <div class="card">
+        <div class="card-img placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="rgba(230,126,34,0.6)">
+            <path d="M20 7H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-9 3H7v2H5V10H3v2h2v2H3v2h2v-2h2v2h2v-2h-2v-2h2v-2zm5 7c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+          </svg>
+          <span style="color:rgba(255,255,255,0.5);font-size:0.8rem;">Dashboard Stock</span>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">pyodbc</span>
+            <span class="tag">Google Sheets</span>
+          </div>
+          <h3 class="card-title">Dashboard de Stock</h3>
+          <p class="card-desc">
+            Control de inventario con sincronización automática desde SQL Server. Incluye alertas de
+            quiebre de stock, rotación por producto y visualización por sucursal.
+          </p>
+          <div class="card-footer">
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-stock" class="card-link" target="_blank" rel="noopener">
+              &#60;/&#62; GitHub
+            </a>
+            <a href="https://joaquinsilvanavia.github.io/emsa-stock/" class="card-link live" target="_blank" rel="noopener">
+              &#9654; Ver demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROVEEDORES -->
+      <div class="card">
+        <div class="card-img placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="rgba(230,126,34,0.6)">
+            <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+          </svg>
+          <span style="color:rgba(255,255,255,0.5);font-size:0.8rem;">Dashboard Proveedores</span>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">SQL Server</span>
+            <span class="tag">HTML5</span>
+          </div>
+          <h3 class="card-title">Dashboard de Proveedores</h3>
+          <p class="card-desc">
+            Gestión de cuentas por pagar con control de vencimientos y flujo de pagos. Optimiza la
+            estrategia fiscal y el capital de trabajo con visibilidad en tiempo real.
+          </p>
+          <div class="card-footer">
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-proveedores" class="card-link" target="_blank" rel="noopener">
+              &#60;/&#62; GitHub
+            </a>
+            <a href="https://joaquinsilvanavia.github.io/emsa-proveedores/" class="card-link live" target="_blank" rel="noopener">
+              &#9654; Ver demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAYOR / EERR -->
+      <div class="card">
+        <div class="card-img placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="rgba(230,126,34,0.6)">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+          </svg>
+          <span style="color:rgba(255,255,255,0.5);font-size:0.8rem;">Dashboard Mayor</span>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">Python ETL</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">Control de Gestión</span>
+          </div>
+          <h3 class="card-title">Estado de Resultados (Mayor)</h3>
+          <p class="card-desc">
+            Dashboard de resultados financieros por sucursal. Permite análisis de margen de
+            contribución, detección de desviaciones y seguimiento de KPIs estratégicos en tiempo real.
+          </p>
+          <div class="card-footer">
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-mayor" class="card-link" target="_blank" rel="noopener">
+              &#60;/&#62; GitHub
+            </a>
+            <a href="https://joaquinsilvanavia.github.io/emsa-mayor/" class="card-link live" target="_blank" rel="noopener">
+              &#9654; Ver demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── HABILIDADES ────────────────────────────────────────────────── -->
+<section id="habilidades">
+  <div class="container fade-in">
+    <h2 class="section-title">Competencias Técnicas</h2>
+    <p class="section-sub">Stack tecnológico orientado al control de gestión y la analítica de datos</p>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <h3>Sistemas & ERPs</h3>
+        <ul class="skill-list">
+          <li>SAP R/3 &amp; S/4 HANA (FI, CO, MM, SD)</li>
+          <li>Softland ERP</li>
+          <li>Defontana</li>
+          <li>INET ERP</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Automatización</h3>
+        <ul class="skill-list">
+          <li>Python (pandas, pyodbc)</li>
+          <li>Web Scraping</li>
+          <li>Excel Avanzado / VBA</li>
+          <li>Power Query</li>
+          <li>Windows Task Scheduler</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Business Intelligence</h3>
+        <ul class="skill-list">
+          <li>Power BI</li>
+          <li>Google Sheets API</li>
+          <li>Dashboards HTML5 + JS</li>
+          <li>GitHub Pages (hosting)</li>
+          <li>Google Data Analytics</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Control de Gestión</h3>
+        <ul class="skill-list">
+          <li>Metodología LEAN / Muda</li>
+          <li>KPIs estratégicos y operativos</li>
+          <li>Costeo por sucursal</li>
+          <li>Break-even analysis</li>
+          <li>Flujo de caja y tesorería</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>IA & Productividad</h3>
+        <ul class="skill-list">
+          <li>LLMs aplicados a finanzas</li>
+          <li>Prompting para análisis</li>
+          <li>Automatización con IA</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>Gestión Financiera</h3>
+        <ul class="skill-list">
+          <li>Gestión tributaria SII</li>
+          <li>Capital de trabajo</li>
+          <li>Conciliaciones bancarias</li>
+          <li>Pagos electrónicos masivos</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FORMACIÓN ─────────────────────────────────────────────────── -->
+<section id="formacion">
+  <div class="container fade-in">
+    <h2 class="section-title">Formación Académica</h2>
+    <p class="section-sub">Educación continua con foco en control estratégico y tecnología</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-title">Power BI — Certificación</div>
+        <div class="timeline-institution">Pontificia Universidad Católica de Chile</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2021</div>
+        <div class="timeline-title">Diplomado en Control de Gestión y Planificación Estratégica</div>
+        <div class="timeline-institution">Pontificia Universidad Católica de Chile</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2022</div>
+        <div class="timeline-title">Herramientas de Excel para Inteligencia de Negocios</div>
+        <div class="timeline-institution">Pontificia Universidad Católica de Chile</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-title">Diplomado Ejecutivo en Control de Gestión</div>
+        <div class="timeline-institution">Pontificia Universidad Católica de Chile</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-title">Programación en Python</div>
+        <div class="timeline-institution">Pontificia Universidad Católica de Chile</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2013 – 2018</div>
+        <div class="timeline-title">Contador Público y Auditor</div>
+        <div class="timeline-institution">Universidad de Santiago de Chile</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ──────────────────────────────────────────────────── -->
+<section id="contacto">
+  <div class="container fade-in">
+    <h2 class="section-title">Contacto</h2>
+    <p class="section-sub">Abierto a nuevas oportunidades y proyectos de colaboración</p>
+    <div class="contact-grid">
+
+      <div class="contact-card">
+        <div class="contact-icon">&#9993;</div>
+        <div class="contact-info">
+          <span>Email</span>
+          <a href="mailto:Luis.joaquin.silva@gmail.com">Luis.joaquin.silva@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">&#128241;</div>
+        <div class="contact-info">
+          <span>Teléfono</span>
+          <a href="tel:+56940062167">+56 9 4006 2167</a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">&#127758;</div>
+        <div class="contact-info">
+          <span>Ubicación</span>
+          <strong>Santiago, Chile</strong>
+        </div>
+      </div>
+
+      <a class="contact-card" href="https://github.com/JoaquinSilvaNavia" target="_blank" rel="noopener">
+        <div class="contact-icon">&#128187;</div>
+        <div class="contact-info">
+          <span>GitHub</span>
+          <strong>JoaquinSilvaNavia</strong>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────── -->
+<footer>
+  <p>
+    &copy; 2026 Luis Joaquín Silva Navia &mdash; Control de Gestión &amp; Data Analytics &mdash; Santiago, Chile
+    &nbsp;|&nbsp;
+    <a href="CV_Luis_Silva_2026.pdf" download>Descargar CV</a>
+  </p>
+</footer>
+
+<script>
+  // Intersection Observer para animaciones fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) { el.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  INSTRUCCIONES PARA PUBLICAR EN GITHUB PAGES                ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║  1. Crea un repositorio en GitHub llamado:                   ║
+  ║     "portfolio" o "joaquinsilvanavia.github.io"              ║
+  ║                                                              ║
+  ║  2. Sube los archivos de esta carpeta:                       ║
+  ║     git init                                                 ║
+  ║     git add .                                                ║
+  ║     git commit -m "Add portfolio site"                       ║
+  ║     git remote add origin <URL del repo>                     ║
+  ║     git push -u origin main                                  ║
+  ║                                                              ║
+  ║  3. En GitHub: Settings > Pages > Source = main branch       ║
+  ║                                                              ║
+  ║  4. Tu portfolio estará en:                                  ║
+  ║     https://joaquinsilvanavia.github.io/portfolio/           ║
+  ║     o https://joaquinsilvanavia.github.io/ (si usas          ║
+  ║     el repo principal "joaquinsilvanavia.github.io")         ║
+  ║                                                              ║
+  ║  5. Para agregar tu foto:                                    ║
+  ║     - Guarda tu foto como images/foto.jpg                    ║
+  ║     - Reemplaza el bloque hero-photo-placeholder             ║
+  ║       por: <img src="images/foto.jpg" alt="Luis Joaquín" />  ║
+  ║                                                              ║
+  ║  6. Agrega el link en LinkedIn:                              ║
+  ║     Perfil > Sitio web > pega la URL de GitHub Pages         ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+
+</body>
+</html>
