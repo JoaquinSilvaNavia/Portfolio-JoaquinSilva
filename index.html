@@ -7,422 +7,708 @@
   <meta name="description" content="Portfolio de Luis Joaquín Silva Navia — Especialista en Control de Gestión, Automatización y Business Intelligence." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    /* ── RESET & BASE ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --navy:   #2C3E50;
-      --orange: #E67E22;
-      --orange-light: #F39C12;
-      --white:  #FFFFFF;
-      --bg:     #F8F9FA;
-      --card:   #FFFFFF;
-      --text:   #333333;
-      --muted:  #666666;
-      --border: #E0E0E0;
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
-      --radius: 12px;
+      --bg:        #0a0c0f;
+      --bg2:       #0f1318;
+      --bg3:       #141a22;
+      --surface:   #1a2230;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --gold:      #c9a84c;
+      --gold-lt:   #e8c97a;
+      --gold-dim:  rgba(201,168,76,0.15);
+      --white:     #f0f2f5;
+      --muted:     #8a95a3;
+      --text:      #cdd5df;
+      --accent:    #3d8bcd;
     }
+
     html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       font-size: 16px;
       line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
+      overflow-x: hidden;
     }
-    a { color: var(--orange); text-decoration: none; }
-    a:hover { color: var(--orange-light); }
 
-    /* ── NAV ──────────────────────────────────────────────────── */
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(44,62,80,0.97);
-      backdrop-filter: blur(8px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem;
-      height: 58px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      padding: 0 3rem;
+      height: 60px;
+      background: rgba(10,12,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
+
     .nav-brand {
-      font-weight: 700; font-size: 1rem; color: var(--white);
-      letter-spacing: 0.03em;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem; color: var(--white);
+      letter-spacing: 0.01em;
     }
-    .nav-brand span { color: var(--orange); }
-    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-brand em { color: var(--gold); font-style: normal; }
+
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a {
-      color: rgba(255,255,255,0.82); font-size: 0.88rem;
-      font-weight: 500; transition: color 0.2s;
+      color: var(--muted); font-size: 0.83rem; font-weight: 500;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color 0.2s; text-decoration: none;
     }
-    .nav-links a:hover { color: var(--orange); }
+    .nav-links a:hover { color: var(--white); }
     .nav-cv {
-      background: var(--orange); color: var(--white) !important;
-      padding: 0.3rem 0.9rem; border-radius: 20px;
-      font-weight: 600; transition: background 0.2s !important;
+      border: 1px solid var(--gold) !important;
+      color: var(--gold) !important;
+      padding: 0.3rem 1rem; border-radius: 2px;
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 0.75rem !important;
+      transition: background 0.2s !important;
     }
-    .nav-cv:hover { background: var(--orange-light) !important; color: var(--white) !important; }
+    .nav-cv:hover { background: var(--gold-dim) !important; color: var(--gold-lt) !important; }
+
     @media (max-width: 700px) {
-      .nav-links { gap: 0.8rem; }
-      .nav-links a { font-size: 0.78rem; }
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.72rem; }
     }
 
-    /* ── SECTIONS ─────────────────────────────────────────────── */
-    section { padding: 5rem 1.5rem; }
-    .container { max-width: 960px; margin: 0 auto; }
-    .section-title {
-      font-size: 1.65rem; font-weight: 700;
-      color: var(--navy); margin-bottom: 0.5rem;
-    }
-    .section-title::after {
-      content: ''; display: block; width: 44px; height: 3px;
-      background: var(--orange); margin-top: 8px; border-radius: 2px;
-    }
-    .section-sub {
-      color: var(--muted); font-size: 0.97rem; margin-bottom: 2.5rem;
-    }
-
-    /* ── HERO ─────────────────────────────────────────────────── */
+    /* ── HERO ── */
     #hero {
-      background: linear-gradient(135deg, var(--navy) 0%, #1a252f 100%);
       min-height: 100vh;
       display: flex; align-items: center;
-      padding: 6rem 1.5rem 4rem;
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
     }
+
+    /* Grid background */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    /* Radial glow */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -20%; left: -10%;
+      width: 60%; height: 80%;
+      background: radial-gradient(ellipse, rgba(61,139,205,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
     .hero-inner {
-      max-width: 960px; margin: 0 auto;
-      display: flex; align-items: center; gap: 3rem;
-      flex-wrap: wrap;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 4rem; align-items: center; position: relative; z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; color: var(--gold);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px; height: 1px; background: var(--gold); display: block;
+    }
+
+    .hero-text h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--white); line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-text h1 em {
+      font-style: italic; color: var(--gold);
+      display: block;
+    }
+
+    .hero-lead {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 520px; line-height: 1.75;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-bottom: 2.5rem;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--white);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--gold); }
+    .stat-label {
+      font-size: 0.75rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-top: 0.2rem;
+    }
+
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--gold); color: #0a0c0f;
+      padding: 0.75rem 1.8rem; border-radius: 2px;
+      font-weight: 600; font-size: 0.88rem;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); color: #0a0c0f; }
+
+    .btn-outline {
+      border: 1px solid var(--border2); color: var(--text);
+      padding: 0.75rem 1.8rem; border-radius: 2px;
+      font-weight: 500; font-size: 0.88rem;
+      letter-spacing: 0.03em;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* Hero photo */
+    .hero-photo-wrap {
+      position: relative; flex-shrink: 0;
     }
     .hero-photo {
-      flex-shrink: 0;
-      width: 180px; height: 180px; border-radius: 50%;
-      border: 4px solid var(--orange);
-      overflow: hidden; background: #3d5166;
+      width: 200px; height: 200px; border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border2);
+      background: var(--surface);
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 8px rgba(230,126,34,0.18);
+      position: relative;
     }
-    .hero-photo img {
-      width: 100%; height: 100%; object-fit: cover;
+    .hero-photo::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--gold-dim), transparent);
     }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
     .hero-photo-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.5); font-size: 0.75rem; text-align: center; gap: 6px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px; color: var(--muted); font-size: 0.72rem; text-align: center;
+      position: relative; z-index: 1;
     }
-    .hero-photo-placeholder svg { opacity: 0.4; }
-    .hero-text { flex: 1; min-width: 260px; }
-    .hero-text h1 {
-      font-size: clamp(1.9rem, 4vw, 2.6rem);
-      font-weight: 700; color: var(--white);
-      line-height: 1.2; margin-bottom: 0.4rem;
+    /* Gold corner accents */
+    .hero-photo-wrap::before,
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border-color: var(--gold);
+      border-style: solid;
     }
-    .hero-text .hero-role {
-      font-size: 1.05rem; color: var(--orange);
-      font-weight: 500; margin-bottom: 1.2rem;
+    .hero-photo-wrap::before {
+      top: -8px; right: -8px;
+      border-width: 2px 2px 0 0;
     }
-    .hero-text p {
-      color: rgba(255,255,255,0.75); font-size: 0.97rem;
-      max-width: 540px; margin-bottom: 2rem; line-height: 1.7;
+    .hero-photo-wrap::after {
+      bottom: -8px; left: -8px;
+      border-width: 0 0 2px 2px;
     }
-    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 2rem; }
-    .badge {
-      background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.88);
-      border: 1px solid rgba(255,255,255,0.18);
-      padding: 0.25rem 0.75rem; border-radius: 20px;
-      font-size: 0.8rem; font-weight: 500;
-    }
-    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--orange); color: var(--white);
-      padding: 0.65rem 1.5rem; border-radius: 6px;
-      font-weight: 600; font-size: 0.92rem;
-      transition: background 0.2s, transform 0.15s;
-      display: inline-flex; align-items: center; gap: 0.4rem;
-    }
-    .btn-primary:hover { background: var(--orange-light); transform: translateY(-1px); color: var(--white); }
-    .btn-outline {
-      border: 2px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.88);
-      padding: 0.65rem 1.5rem; border-radius: 6px;
-      font-weight: 600; font-size: 0.92rem;
-      transition: border-color 0.2s, color 0.2s, transform 0.15s;
-      display: inline-flex; align-items: center; gap: 0.4rem;
-    }
-    .btn-outline:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-1px); }
 
-    /* ── SOBRE MÍ ─────────────────────────────────────────────── */
-    #sobre-mi { background: var(--white); }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: 1.2rem;
+    }
+    .tag-sm {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem; border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { display: none; }
+      #hero { padding: 7rem 1.5rem 4rem; }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 3rem; position: relative; z-index: 1; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; color: var(--gold);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .section-label::before {
+      content: ''; width: 24px; height: 1px; background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--white); margin-bottom: 0.6rem;
+      letter-spacing: -0.02em; line-height: 1.15;
+    }
+    .section-sub {
+      color: var(--muted); font-size: 0.95rem;
+      margin-bottom: 3rem; font-weight: 300; max-width: 560px;
+    }
+
+    @media (max-width: 700px) {
+      section { padding: 4rem 1.5rem; }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── SOBRE MÍ ── */
+    #sobre-mi { background: var(--bg2); }
+
     .sobre-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem;
       align-items: start;
     }
-    .sobre-grid p { color: var(--text); line-height: 1.75; margin-bottom: 1rem; }
-    .highlights { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+
+    .sobre-grid p {
+      color: var(--text); line-height: 1.8; margin-bottom: 1.2rem;
+      font-weight: 300; font-size: 0.97rem;
+    }
+    .sobre-grid p strong { color: var(--white); font-weight: 600; }
+
+    .highlights { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
     .highlights li {
-      display: flex; gap: 0.8rem; align-items: flex-start;
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+      transition: border-color 0.2s;
     }
+    .highlights li:hover { border-color: var(--gold); }
     .hl-icon {
-      width: 36px; height: 36px; border-radius: 8px;
-      background: rgba(230,126,34,0.12);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 1rem;
+      font-size: 1.1rem; flex-shrink: 0;
+      margin-top: 2px;
     }
-    .hl-text strong { display: block; font-size: 0.9rem; color: var(--navy); }
-    .hl-text span { font-size: 0.83rem; color: var(--muted); }
+    .hl-text strong {
+      display: block; font-size: 0.88rem;
+      color: var(--white); font-weight: 600; margin-bottom: 2px;
+    }
+    .hl-text span { font-size: 0.8rem; color: var(--muted); }
+
     @media (max-width: 700px) {
-      .sobre-grid { grid-template-columns: 1fr; }
+      .sobre-grid { grid-template-columns: 1fr; gap: 2rem; }
     }
 
-    /* ── ARQUITECTURA ─────────────────────────────────────────── */
+    /* ── ARQUITECTURA ── */
     #arquitectura { background: var(--bg); }
+
     .arch-diagram {
-      background: var(--navy);
-      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      border-radius: 4px;
       padding: 2.5rem;
       display: flex; align-items: center; justify-content: center;
       flex-wrap: wrap; gap: 0;
+      background: var(--bg2);
       overflow-x: auto;
+      position: relative;
     }
+    .arch-diagram::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
     .arch-step {
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      min-width: 110px;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      min-width: 120px; position: relative; z-index: 1;
     }
     .arch-box {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 8px; padding: 0.75rem 1rem;
-      color: var(--white); font-size: 0.82rem;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 4px; padding: 0.85rem 1.1rem;
+      color: var(--white); font-size: 0.8rem;
       text-align: center; font-weight: 500;
-      line-height: 1.3;
+      line-height: 1.4;
+      transition: border-color 0.2s;
+    }
+    .arch-box:hover { border-color: var(--gold); }
+    .arch-box .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; color: var(--gold);
+      display: block; margin-top: 3px;
     }
     .arch-label {
-      font-size: 0.7rem; color: rgba(255,255,255,0.5);
-      text-transform: uppercase; letter-spacing: 0.05em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.08em;
     }
     .arch-arrow {
-      color: var(--orange); font-size: 1.4rem;
-      padding: 0 0.5rem; align-self: center; flex-shrink: 0;
+      color: var(--gold); font-size: 1.2rem;
+      padding: 0 0.6rem; align-self: center;
+      flex-shrink: 0; position: relative; z-index: 1;
+      opacity: 0.6;
     }
 
-    /* ── PROYECTOS ────────────────────────────────────────────── */
-    #proyectos { background: var(--white); }
+    /* ── PROYECTOS ── */
+    #proyectos { background: var(--bg2); }
+
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.5rem;
     }
+
     .card {
-      background: var(--card);
+      background: var(--bg3);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 4px;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: border-color 0.25s, transform 0.25s;
       display: flex; flex-direction: column;
+      position: relative;
     }
-    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover { border-color: var(--border2); transform: translateY(-4px); }
+    .card:hover::before { opacity: 1; }
+
     .card-img {
-      width: 100%; height: 180px; object-fit: cover;
-      background: linear-gradient(135deg, #2C3E50, #3D6B8A);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.5); font-size: 0.8rem;
-      flex-shrink: 0;
+      width: 100%; height: 190px;
+      overflow: hidden; flex-shrink: 0;
+      background: var(--surface);
+      position: relative;
     }
-    .card-img img { width: 100%; height: 100%; object-fit: cover; }
-    .card-img.placeholder { flex-direction: column; gap: 8px; }
-    .card-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; }
-    .card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .card:hover .card-img img { transform: scale(1.03); }
+    .card-img.placeholder {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px; color: var(--muted); font-size: 0.8rem;
+    }
+
+    .card-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.85rem; }
     .tag {
-      background: rgba(230,126,34,0.1); color: var(--orange);
-      font-size: 0.72rem; font-weight: 600; padding: 0.15rem 0.55rem;
-      border-radius: 12px; letter-spacing: 0.02em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.18rem 0.55rem; border-radius: 2px;
+      letter-spacing: 0.04em;
     }
+
     .card-title {
-      font-size: 1rem; font-weight: 700; color: var(--navy);
-      margin-bottom: 0.4rem;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem; color: var(--white);
+      margin-bottom: 0.5rem; letter-spacing: -0.01em;
     }
     .card-desc {
-      font-size: 0.87rem; color: var(--muted);
-      line-height: 1.6; flex: 1; margin-bottom: 1rem;
+      font-size: 0.85rem; color: var(--muted);
+      line-height: 1.65; flex: 1; margin-bottom: 1.2rem;
+      font-weight: 300;
     }
     .card-footer {
-      display: flex; gap: 0.7rem; align-items: center;
-      border-top: 1px solid var(--border); padding-top: 0.9rem;
+      display: flex; gap: 0.8rem; align-items: center;
+      border-top: 1px solid var(--border); padding-top: 1rem;
     }
     .card-link {
-      font-size: 0.82rem; font-weight: 600;
-      color: var(--navy); display: flex; align-items: center; gap: 0.3rem;
-      transition: color 0.2s;
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--muted); display: flex; align-items: center; gap: 0.3rem;
+      transition: color 0.2s; text-decoration: none;
+      letter-spacing: 0.02em;
     }
-    .card-link:hover { color: var(--orange); }
+    .card-link:hover { color: var(--white); }
     .card-link.live {
-      background: var(--orange); color: var(--white);
-      padding: 0.3rem 0.8rem; border-radius: 20px;
-      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid var(--gold); color: var(--gold);
+      padding: 0.3rem 0.9rem; border-radius: 2px;
+      font-size: 0.7rem; letter-spacing: 0.06em;
+      transition: background 0.2s;
     }
-    .card-link.live:hover { background: var(--orange-light); color: var(--white); }
+    .card-link.live:hover { background: var(--gold-dim); color: var(--gold-lt); }
 
-    /* ── HABILIDADES ──────────────────────────────────────────── */
+    /* ── HABILIDADES ── */
     #habilidades { background: var(--bg); }
+
     .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
     }
     .skill-group {
-      background: var(--white); border-radius: var(--radius);
-      padding: 1.4rem; box-shadow: var(--shadow);
-      border-top: 3px solid var(--orange);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
     }
+    .skill-group:hover { border-color: var(--border2); }
+
     .skill-group h3 {
-      font-size: 0.88rem; font-weight: 700; color: var(--orange);
-      text-transform: uppercase; letter-spacing: 0.06em;
-      margin-bottom: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 500; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
     }
-    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
     .skill-list li {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.87rem; color: var(--text);
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.85rem; color: var(--text); font-weight: 300;
     }
     .skill-list li::before {
       content: '';
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--orange); flex-shrink: 0;
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0; opacity: 0.7;
     }
 
-    /* ── FORMACIÓN ────────────────────────────────────────────── */
-    #formacion { background: var(--white); }
-    .timeline { position: relative; padding-left: 2rem; }
+    /* ── FORMACIÓN ── */
+    #formacion { background: var(--bg2); }
+
+    .timeline { position: relative; padding-left: 2rem; max-width: 680px; }
     .timeline::before {
-      content: ''; position: absolute; left: 6px; top: 0; bottom: 0;
-      width: 2px; background: var(--border);
+      content: ''; position: absolute; left: 0; top: 6px; bottom: 6px;
+      width: 1px; background: var(--border);
     }
-    .timeline-item {
-      position: relative; margin-bottom: 2rem;
-    }
+    .timeline-item { position: relative; margin-bottom: 2.2rem; }
     .timeline-item::before {
-      content: ''; position: absolute; left: -1.72rem; top: 5px;
-      width: 12px; height: 12px; border-radius: 50%;
-      background: var(--orange); border: 2px solid var(--white);
-      box-shadow: 0 0 0 2px var(--orange);
+      content: ''; position: absolute; left: -2.4rem; top: 6px;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--bg2); border: 1px solid var(--gold);
+      box-shadow: 0 0 8px rgba(201,168,76,0.3);
     }
     .timeline-year {
-      font-size: 0.78rem; font-weight: 600; color: var(--orange);
-      text-transform: uppercase; letter-spacing: 0.06em;
-      margin-bottom: 0.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 500; color: var(--gold);
+      letter-spacing: 0.1em; margin-bottom: 0.25rem;
     }
     .timeline-title {
-      font-size: 0.97rem; font-weight: 700; color: var(--navy);
-      margin-bottom: 0.15rem;
+      font-size: 0.95rem; font-weight: 600; color: var(--white);
+      margin-bottom: 0.15rem; line-height: 1.4;
     }
     .timeline-institution {
-      font-size: 0.85rem; color: var(--muted);
+      font-size: 0.82rem; color: var(--muted); font-weight: 300;
     }
 
-    /* ── CONTACTO ─────────────────────────────────────────────── */
-    #contacto {
-      background: linear-gradient(135deg, var(--navy) 0%, #1a252f 100%);
-    }
-    #contacto .section-title { color: var(--white); }
-    #contacto .section-title::after { background: var(--orange); }
-    #contacto .section-sub { color: rgba(255,255,255,0.65); }
+    /* ── CONTACTO ── */
+    #contacto { background: var(--bg); }
+
     .contact-grid {
-      display: flex; gap: 1.5rem; flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
     }
     .contact-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: var(--radius); padding: 1.4rem 1.8rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 1.4rem 1.6rem;
       display: flex; align-items: center; gap: 1rem;
-      flex: 1; min-width: 220px;
-      transition: background 0.2s;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
     }
-    .contact-card:hover { background: rgba(255,255,255,0.12); }
+    .contact-card:hover { border-color: var(--gold); background: var(--bg3); }
     .contact-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: rgba(230,126,34,0.25);
+      width: 40px; height: 40px; border-radius: 3px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201,168,76,0.2);
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 1.2rem;
+      flex-shrink: 0; font-size: 1.1rem;
     }
     .contact-info span {
-      display: block; font-size: 0.75rem; color: rgba(255,255,255,0.5);
-      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px;
+      display: block; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px;
     }
     .contact-info a, .contact-info strong {
-      font-size: 0.9rem; color: var(--white); font-weight: 500;
+      font-size: 0.88rem; color: var(--white); font-weight: 400;
+      text-decoration: none; transition: color 0.2s;
     }
-    .contact-info a:hover { color: var(--orange); }
+    .contact-info a:hover { color: var(--gold); }
 
-    /* ── FOOTER ───────────────────────────────────────────────── */
+    /* ── FOOTER ── */
     footer {
-      background: #131d26; color: rgba(255,255,255,0.45);
-      text-align: center; padding: 1.5rem;
-      font-size: 0.82rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 2rem;
     }
-    footer a { color: var(--orange); }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1100px; margin: 0 auto;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      color: var(--muted); font-size: 0.9rem;
+    }
+    .footer-brand em { color: var(--gold); font-style: normal; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.06em;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.75rem; color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    /* ── ANIMATIONS ───────────────────────────────────────────── */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .stagger > * {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0s; }
+    .stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.08s; }
+    .stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.16s; }
+    .stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.24s; }
+    .stagger.visible > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay: 0.32s; }
+    .stagger.visible > *:nth-child(6) { opacity:1; transform:translateY(0); transition-delay: 0.40s; }
+
+    /* ── CURSOR ── */
+    @media (pointer: fine) {
+      body { cursor: none; }
+      #cursor {
+        width: 8px; height: 8px;
+        background: var(--gold);
+        border-radius: 50%;
+        position: fixed; pointer-events: none; z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, opacity 0.2s;
+      }
+      #cursor-ring {
+        width: 32px; height: 32px;
+        border: 1px solid rgba(201,168,76,0.4);
+        border-radius: 50%;
+        position: fixed; pointer-events: none; z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: left 0.12s ease-out, top 0.12s ease-out, width 0.2s, height 0.2s;
+      }
+    }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ───────────────────────────────────────────────────────── -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ── NAV ── -->
 <nav>
-  <div class="nav-brand">Luis J. <span>Silva</span></div>
+  <div class="nav-brand">Luis J. <em>Silva</em></div>
   <div class="nav-links">
     <a href="#sobre-mi">Sobre mí</a>
     <a href="#proyectos">Proyectos</a>
     <a href="#habilidades">Skills</a>
     <a href="#formacion">Formación</a>
-    <a href="CV_Luis_Silva_2026.pdf" class="nav-cv" download>&#8615; CV</a>
+    <a href="CV_Luis_Silva_2026.pdf" class="nav-cv" download>↓ CV</a>
   </div>
 </nav>
 
-<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<!-- ── HERO ── -->
 <section id="hero">
   <div class="hero-inner">
-
-    <div class="hero-photo" id="photoContainer">
-      <!-- Reemplaza esta sección con tu foto:
-           <img src="images/foto.jpg" alt="Luis Joaquín Silva" />
-      -->
-      <div class="hero-photo-placeholder">
-        <svg width="52" height="52" viewBox="0 0 24 24" fill="rgba(255,255,255,0.6)">
-          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-        </svg>
-        <span>Agregar foto<br/>profesional</span>
-      </div>
-    </div>
-
     <div class="hero-text">
-      <h1>Luis Joaquín<br/>Silva Navia</h1>
-      <p class="hero-role">Control de Gestión Estratégico &nbsp;|&nbsp; Data Analytics &nbsp;|&nbsp; Automatización</p>
-      <p>
-        Especialista en transformar departamentos financieros tradicionales en centros de control
-        estratégico, integrando Python, BI y metodologías LEAN para generar valor real en el negocio.
+      <div class="hero-eyebrow">Control de Gestión · Data Analytics</div>
+      <h1>Luis Joaquín<br/><em>Silva Navia</em></h1>
+      <p class="hero-lead">
+        Especialista en transformar departamentos financieros en centros de control estratégico,
+        integrando Python, BI y metodologías LEAN para generar valor real en el negocio.
       </p>
-      <div class="hero-badges">
-        <span class="badge">Python</span>
-        <span class="badge">Power BI</span>
-        <span class="badge">SAP FI/CO</span>
-        <span class="badge">Google Sheets API</span>
-        <span class="badge">LEAN / Mejora Continua</span>
-        <span class="badge">SQL Server</span>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">6<span>+</span></div>
+          <div class="stat-label">Dashboards en prod.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">30<span>%</span></div>
+          <div class="stat-label">Reducción carga ops.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2<span>x</span></div>
+          <div class="stat-label">Diplomados PUC</div>
+        </div>
       </div>
       <div class="hero-ctas">
-        <a href="#proyectos" class="btn-primary">Ver proyectos &#8595;</a>
-        <a href="CV_Luis_Silva_2026.pdf" class="btn-outline" download>&#8615; Descargar CV</a>
+        <a href="#proyectos" class="btn-primary">Ver proyectos →</a>
+        <a href="CV_Luis_Silva_2026.pdf" class="btn-outline" download>↓ Descargar CV</a>
+      </div>
+      <div class="hero-tags">
+        <span class="tag-sm">Python</span>
+        <span class="tag-sm">Power BI</span>
+        <span class="tag-sm">SAP FI/CO</span>
+        <span class="tag-sm">Google Sheets API</span>
+        <span class="tag-sm">LEAN</span>
+        <span class="tag-sm">SQL Server</span>
+        <span class="tag-sm">JavaScript</span>
       </div>
     </div>
 
+    <div class="hero-photo-wrap">
+      <div class="hero-photo" id="photoContainer">
+        <!-- Para agregar tu foto: <img src="images/foto.jpg" alt="Luis Joaquín Silva" /> -->
+        <div class="hero-photo-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="rgba(201,168,76,0.3)">
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+          </svg>
+          <span style="font-size:0.68rem;color:var(--muted);">Agregar foto</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ── SOBRE MÍ ───────────────────────────────────────────────────── -->
+<hr class="divider" />
+
+<!-- ── SOBRE MÍ ── -->
 <section id="sobre-mi">
-  <div class="container fade-in">
+  <div class="container fade-up">
+    <div class="section-label">01 — Perfil</div>
     <h2 class="section-title">Sobre mí</h2>
     <p class="section-sub">Especialista en Control de Gestión con foco en tecnología e impacto estratégico</p>
     <div class="sobre-grid">
@@ -447,7 +733,7 @@
           <div class="hl-icon">📊</div>
           <div class="hl-text">
             <strong>Dashboards en producción</strong>
-            <span>5 sistemas interconectados con datos en tiempo real</span>
+            <span>6 sistemas interconectados con datos en tiempo real vía Vercel</span>
           </div>
         </li>
         <li>
@@ -476,48 +762,55 @@
   </div>
 </section>
 
-<!-- ── ARQUITECTURA ───────────────────────────────────────────────── -->
+<hr class="divider" />
+
+<!-- ── ARQUITECTURA ── -->
 <section id="arquitectura">
-  <div class="container fade-in">
-    <h2 class="section-title">Arquitectura del Sistema</h2>
-    <p class="section-sub">Pipeline de datos de extremo a extremo: desde SQL Server hasta dashboards en GitHub Pages</p>
+  <div class="container fade-up">
+    <div class="section-label">02 — Arquitectura</div>
+    <h2 class="section-title">Pipeline de Datos</h2>
+    <p class="section-sub">Flujo de extremo a extremo: desde SQL Server hasta dashboards en producción</p>
     <div class="arch-diagram">
       <div class="arch-step">
-        <div class="arch-box">SQL Server<br/>(INET ERP)</div>
+        <div class="arch-box">SQL Server<br/><span class="mono">INET ERP</span></div>
         <div class="arch-label">Fuente</div>
       </div>
-      <div class="arch-arrow">&#8250;</div>
+      <div class="arch-arrow">›</div>
       <div class="arch-step">
-        <div class="arch-box">Python ETL<br/>pyodbc + pandas</div>
+        <div class="arch-box">Python ETL<br/><span class="mono">pyodbc · pandas</span></div>
         <div class="arch-label">Procesamiento</div>
       </div>
-      <div class="arch-arrow">&#8250;</div>
+      <div class="arch-arrow">›</div>
       <div class="arch-step">
-        <div class="arch-box">Google Sheets<br/>API (gspread)</div>
+        <div class="arch-box">Google Sheets<br/><span class="mono">gspread API</span></div>
         <div class="arch-label">Almacén</div>
       </div>
-      <div class="arch-arrow">&#8250;</div>
+      <div class="arch-arrow">›</div>
       <div class="arch-step">
-        <div class="arch-box">HTML5 + JS<br/>Dashboards</div>
+        <div class="arch-box">HTML5 + JS<br/><span class="mono">Dashboards</span></div>
         <div class="arch-label">Visualización</div>
       </div>
-      <div class="arch-arrow">&#8250;</div>
+      <div class="arch-arrow">›</div>
       <div class="arch-step">
-        <div class="arch-box">GitHub Pages<br/>Hosting</div>
+        <div class="arch-box">Vercel CDN<br/><span class="mono">Auto-deploy</span></div>
         <div class="arch-label">Distribución</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── PROYECTOS ─────────────────────────────────────────────────── -->
-<section id="proyectos">
-  <div class="container fade-in">
-    <h2 class="section-title">Proyectos</h2>
-    <p class="section-sub">Dashboards y sistemas de automatización desarrollados en producción</p>
-    <div class="projects-grid">
+<hr class="divider" />
 
-      <!-- VENTAS -->
+<!-- ── PROYECTOS ── -->
+<section id="proyectos">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">03 — Trabajo</div>
+      <h2 class="section-title">Proyectos</h2>
+      <p class="section-sub">Dashboards y sistemas de automatización en producción</p>
+    </div>
+    <div class="projects-grid stagger">
+
       <div class="card">
         <div class="card-img">
           <img src="images/emsa-ventas.png" alt="Dashboard de Ventas" />
@@ -534,17 +827,12 @@
             visualización dinámica con actualización horaria para decisiones de gestión comercial.
           </p>
           <div class="card-footer">
-            <a href="https://github.com/JoaquinSilvaNavia/emsa-ventas" class="card-link" target="_blank" rel="noopener">
-              &#60;/&#62; GitHub
-            </a>
-            <a href="https://joaquinsilvanavia.github.io/emsa-ventas/" class="card-link live" target="_blank" rel="noopener">
-              &#9654; Ver demo
-            </a>
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-ventas" class="card-link" target="_blank" rel="noopener">⌥ GitHub</a>
+            <a href="https://emsa-ventas.vercel.app" class="card-link live" target="_blank" rel="noopener">▶ Ver demo</a>
           </div>
         </div>
       </div>
 
-      <!-- CLIENTES -->
       <div class="card">
         <div class="card-img">
           <img src="images/emsa-clientes.png" alt="Dashboard de Clientes" />
@@ -561,17 +849,12 @@
             deuda y alertas de vencimiento integradas desde el ERP en tiempo real.
           </p>
           <div class="card-footer">
-            <a href="https://github.com/JoaquinSilvaNavia/emsa-clientes" class="card-link" target="_blank" rel="noopener">
-              &#60;/&#62; GitHub
-            </a>
-            <a href="https://joaquinsilvanavia.github.io/emsa-clientes/" class="card-link live" target="_blank" rel="noopener">
-              &#9654; Ver demo
-            </a>
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-clientes" class="card-link" target="_blank" rel="noopener">⌥ GitHub</a>
+            <a href="https://emsa-clientes.vercel.app" class="card-link live" target="_blank" rel="noopener">▶ Ver demo</a>
           </div>
         </div>
       </div>
 
-      <!-- STOCK -->
       <div class="card">
         <div class="card-img">
           <img src="images/emsa-stock.png" alt="Dashboard de Stock" />
@@ -588,17 +871,12 @@
             quiebre de stock, rotación por producto y visualización por sucursal.
           </p>
           <div class="card-footer">
-            <a href="https://github.com/JoaquinSilvaNavia/emsa-stock" class="card-link" target="_blank" rel="noopener">
-              &#60;/&#62; GitHub
-            </a>
-            <a href="https://joaquinsilvanavia.github.io/emsa-stock/" class="card-link live" target="_blank" rel="noopener">
-              &#9654; Ver demo
-            </a>
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-stock" class="card-link" target="_blank" rel="noopener">⌥ GitHub</a>
+            <a href="https://emsa-stock.vercel.app" class="card-link live" target="_blank" rel="noopener">▶ Ver demo</a>
           </div>
         </div>
       </div>
 
-      <!-- PROVEEDORES -->
       <div class="card">
         <div class="card-img">
           <img src="images/emsa-proveedores.png" alt="Dashboard de Proveedores" />
@@ -615,17 +893,12 @@
             estrategia fiscal y el capital de trabajo con visibilidad en tiempo real.
           </p>
           <div class="card-footer">
-            <a href="https://github.com/JoaquinSilvaNavia/emsa-proveedores" class="card-link" target="_blank" rel="noopener">
-              &#60;/&#62; GitHub
-            </a>
-            <a href="https://joaquinsilvanavia.github.io/emsa-proveedores/" class="card-link live" target="_blank" rel="noopener">
-              &#9654; Ver demo
-            </a>
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-proveedores" class="card-link" target="_blank" rel="noopener">⌥ GitHub</a>
+            <a href="https://emsa-proveedores.vercel.app" class="card-link live" target="_blank" rel="noopener">▶ Ver demo</a>
           </div>
         </div>
       </div>
 
-      <!-- MAYOR / EERR -->
       <div class="card">
         <div class="card-img">
           <img src="images/costeo1.png" alt="Estado de Resultados" />
@@ -636,18 +909,36 @@
             <span class="tag">Google Sheets</span>
             <span class="tag">Control de Gestión</span>
           </div>
-          <h3 class="card-title">Estado de Resultados (Mayor)</h3>
+          <h3 class="card-title">Estado de Resultados</h3>
           <p class="card-desc">
-            Dashboard de resultados financieros por sucursal. Permite análisis de margen de
-            contribución, detección de desviaciones y seguimiento de KPIs estratégicos en tiempo real.
+            Dashboard de resultados financieros por sucursal. Análisis de margen de contribución,
+            detección de desviaciones y seguimiento de KPIs estratégicos en tiempo real.
           </p>
           <div class="card-footer">
-            <a href="https://github.com/JoaquinSilvaNavia/emsa-mayor" class="card-link" target="_blank" rel="noopener">
-              &#60;/&#62; GitHub
-            </a>
-            <a href="https://joaquinsilvanavia.github.io/emsa-mayor/" class="card-link live" target="_blank" rel="noopener">
-              &#9654; Ver demo
-            </a>
+            <a href="https://github.com/JoaquinSilvaNavia/emsa-mayor" class="card-link" target="_blank" rel="noopener">⌥ GitHub</a>
+            <a href="https://emsa-mayor.vercel.app" class="card-link live" target="_blank" rel="noopener">▶ Ver demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="images/costeo2.png" alt="Sistema de Costeo" />
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Excel VBA</span>
+            <span class="tag">LEAN</span>
+          </div>
+          <h3 class="card-title">Sistema de Costeo</h3>
+          <p class="card-desc">
+            Modelo de costeo por sucursal con análisis de margen de contribución por línea de
+            producto. Detección automatizada de desviaciones y alertas de rentabilidad.
+          </p>
+          <div class="card-footer">
+            <a href="https://github.com/JoaquinSilvaNavia" class="card-link" target="_blank" rel="noopener">⌥ GitHub</a>
+            <a href="https://emsa-home.vercel.app" class="card-link live" target="_blank" rel="noopener">▶ Ver demo</a>
           </div>
         </div>
       </div>
@@ -656,12 +947,17 @@
   </div>
 </section>
 
-<!-- ── HABILIDADES ────────────────────────────────────────────────── -->
+<hr class="divider" />
+
+<!-- ── HABILIDADES ── -->
 <section id="habilidades">
-  <div class="container fade-in">
-    <h2 class="section-title">Competencias Técnicas</h2>
-    <p class="section-sub">Stack tecnológico orientado al control de gestión y la analítica de datos</p>
-    <div class="skills-grid">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">04 — Stack</div>
+      <h2 class="section-title">Competencias Técnicas</h2>
+      <p class="section-sub">Stack tecnológico orientado al control de gestión y la analítica de datos</p>
+    </div>
+    <div class="skills-grid stagger">
 
       <div class="skill-group">
         <h3>Sistemas & ERPs</h3>
@@ -690,7 +986,7 @@
           <li>Power BI</li>
           <li>Google Sheets API</li>
           <li>Dashboards HTML5 + JS</li>
-          <li>GitHub Pages (hosting)</li>
+          <li>Vercel (hosting &amp; CI/CD)</li>
           <li>Google Data Analytics</li>
         </ul>
       </div>
@@ -712,6 +1008,7 @@
           <li>LLMs aplicados a finanzas</li>
           <li>Prompting para análisis</li>
           <li>Automatización con IA</li>
+          <li>Claude Cowork / Agentes</li>
         </ul>
       </div>
 
@@ -729,9 +1026,12 @@
   </div>
 </section>
 
-<!-- ── FORMACIÓN ─────────────────────────────────────────────────── -->
+<hr class="divider" />
+
+<!-- ── FORMACIÓN ── -->
 <section id="formacion">
-  <div class="container fade-in">
+  <div class="container fade-up">
+    <div class="section-label">05 — Educación</div>
     <h2 class="section-title">Formación Académica</h2>
     <p class="section-sub">Educación continua con foco en control estratégico y tecnología</p>
     <div class="timeline">
@@ -743,14 +1043,14 @@
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-year">2021</div>
-        <div class="timeline-title">Diplomado en Control de Gestión y Planificación Estratégica</div>
+        <div class="timeline-year">2022</div>
+        <div class="timeline-title">Herramientas de Excel para Inteligencia de Negocios</div>
         <div class="timeline-institution">Pontificia Universidad Católica de Chile</div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-year">2022</div>
-        <div class="timeline-title">Herramientas de Excel para Inteligencia de Negocios</div>
+        <div class="timeline-year">2021</div>
+        <div class="timeline-title">Diplomado en Control de Gestión y Planificación Estratégica</div>
         <div class="timeline-institution">Pontificia Universidad Católica de Chile</div>
       </div>
 
@@ -776,23 +1076,26 @@
   </div>
 </section>
 
-<!-- ── CONTACTO ──────────────────────────────────────────────────── -->
+<hr class="divider" />
+
+<!-- ── CONTACTO ── -->
 <section id="contacto">
-  <div class="container fade-in">
-    <h2 class="section-title">Contacto</h2>
+  <div class="container fade-up">
+    <div class="section-label">06 — Contacto</div>
+    <h2 class="section-title">Trabajemos juntos</h2>
     <p class="section-sub">Abierto a nuevas oportunidades y proyectos de colaboración</p>
     <div class="contact-grid">
 
       <div class="contact-card">
-        <div class="contact-icon">&#9993;</div>
+        <div class="contact-icon">✉</div>
         <div class="contact-info">
           <span>Email</span>
-          <a href="mailto:Luis.joaquin.silva@gmail.com">Luis.joaquin.silva@gmail.com</a>
+          <a href="mailto:Luis.joaquin.silva@gmail.com">luis.joaquin.silva@gmail.com</a>
         </div>
       </div>
 
       <div class="contact-card">
-        <div class="contact-icon">&#128241;</div>
+        <div class="contact-icon">📱</div>
         <div class="contact-info">
           <span>Teléfono</span>
           <a href="tel:+56940062167">+56 9 4006 2167</a>
@@ -800,7 +1103,7 @@
       </div>
 
       <div class="contact-card">
-        <div class="contact-icon">&#127758;</div>
+        <div class="contact-icon">📍</div>
         <div class="contact-info">
           <span>Ubicación</span>
           <strong>Santiago, Chile</strong>
@@ -808,7 +1111,7 @@
       </div>
 
       <a class="contact-card" href="https://github.com/JoaquinSilvaNavia" target="_blank" rel="noopener">
-        <div class="contact-icon">&#128187;</div>
+        <div class="contact-icon">⌥</div>
         <div class="contact-info">
           <span>GitHub</span>
           <strong>JoaquinSilvaNavia</strong>
@@ -819,55 +1122,72 @@
   </div>
 </section>
 
-<!-- ── FOOTER ────────────────────────────────────────────────────── -->
+<!-- ── FOOTER ── -->
 <footer>
-  <p>
-    &copy; 2026 Luis Joaquín Silva Navia &mdash; Control de Gestión &amp; Data Analytics &mdash; Santiago, Chile
-    &nbsp;|&nbsp;
-    <a href="CV_Luis_Silva_2026.pdf" download>Descargar CV</a>
-  </p>
+  <div class="footer-inner">
+    <div class="footer-brand">Luis J. <em>Silva</em> — Santiago, Chile</div>
+    <div class="footer-links">
+      <a href="CV_Luis_Silva_2026.pdf" download>↓ CV</a>
+      <a href="https://github.com/JoaquinSilvaNavia" target="_blank">GitHub</a>
+      <a href="mailto:Luis.joaquin.silva@gmail.com">Email</a>
+    </div>
+    <div class="footer-copy">© 2026</div>
+  </div>
 </footer>
 
 <script>
-  // Intersection Observer para animaciones fade-in
-  const observer = new IntersectionObserver((entries) => {
+  // Intersection Observer — fade-up & stagger
+  const io = new IntersectionObserver((entries) => {
     entries.forEach(el => {
-      if (el.isIntersecting) { el.target.classList.add('visible'); }
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+        io.unobserve(el.target);
+      }
     });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
+  }, { threshold: 0.06 });
 
-<!--
-  ╔══════════════════════════════════════════════════════════════╗
-  ║  INSTRUCCIONES PARA PUBLICAR EN GITHUB PAGES                ║
-  ╠══════════════════════════════════════════════════════════════╣
-  ║  1. Crea un repositorio en GitHub llamado:                   ║
-  ║     "portfolio" o "joaquinsilvanavia.github.io"              ║
-  ║                                                              ║
-  ║  2. Sube los archivos de esta carpeta:                       ║
-  ║     git init                                                 ║
-  ║     git add .                                                ║
-  ║     git commit -m "Add portfolio site"                       ║
-  ║     git remote add origin <URL del repo>                     ║
-  ║     git push -u origin main                                  ║
-  ║                                                              ║
-  ║  3. En GitHub: Settings > Pages > Source = main branch       ║
-  ║                                                              ║
-  ║  4. Tu portfolio estará en:                                  ║
-  ║     https://joaquinsilvanavia.github.io/portfolio/           ║
-  ║     o https://joaquinsilvanavia.github.io/ (si usas          ║
-  ║     el repo principal "joaquinsilvanavia.github.io")         ║
-  ║                                                              ║
-  ║  5. Para agregar tu foto:                                    ║
-  ║     - Guarda tu foto como images/foto.jpg                    ║
-  ║     - Reemplaza el bloque hero-photo-placeholder             ║
-  ║       por: <img src="images/foto.jpg" alt="Luis Joaquín" />  ║
-  ║                                                              ║
-  ║  6. Agrega el link en LinkedIn:                              ║
-  ║     Perfil > Sitio web > pega la URL de GitHub Pages         ║
-  ╚══════════════════════════════════════════════════════════════╝
--->
+  document.querySelectorAll('.fade-up, .stagger').forEach(el => io.observe(el));
+
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  if (cursor && ring) {
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '12px'; cursor.style.height = '12px';
+        ring.style.width = '44px'; ring.style.height = '44px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '8px'; cursor.style.height = '8px';
+        ring.style.width = '32px'; ring.style.height = '32px';
+      });
+    });
+  }
+
+  // Hero number counter animation
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const text = el.textContent;
+    const num = parseFloat(text);
+    const suffix = text.replace(/[\d.]/g, '');
+    if (isNaN(num)) return;
+    let start = 0;
+    const duration = 1200;
+    const step = timestamp => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.innerHTML = Math.floor(eased * num) + '<span>' + suffix + '</span>';
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    setTimeout(() => requestAnimationFrame(step), 600);
+  });
+</script>
 
 </body>
 </html>
