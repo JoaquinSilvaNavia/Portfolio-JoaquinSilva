@@ -284,11 +284,85 @@
       section { padding: 4rem 1.5rem; }
     }
 
+    .hero-role {
+      font-size: 0.85rem; color: var(--muted);
+      font-weight: 400; letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
     /* ── DIVIDER ── */
     .divider {
       border: none;
       border-top: 1px solid var(--border);
       margin: 0;
+    }
+
+    /* ── EXPERIENCIA ── */
+    #experiencia { background: var(--bg3); }
+
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .exp-item:last-child { border-bottom: none; }
+
+    .exp-left {}
+    .exp-period {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; color: var(--gold);
+      letter-spacing: 0.08em; margin-bottom: 0.4rem;
+    }
+    .exp-company {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem; color: var(--white);
+      line-height: 1.3; margin-bottom: 0.3rem;
+    }
+    .exp-industry {
+      font-size: 0.72rem; color: var(--muted);
+      font-weight: 300; font-style: italic;
+    }
+
+    .exp-right {}
+    .exp-role {
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--white); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .exp-role-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem; color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.15rem 0.5rem; border-radius: 2px;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .exp-bullets li {
+      font-size: 0.86rem; color: var(--text);
+      line-height: 1.65; font-weight: 300;
+      display: flex; gap: 0.8rem; align-items: flex-start;
+    }
+    .exp-bullets li::before {
+      content: '›';
+      color: var(--gold); font-size: 1rem;
+      flex-shrink: 0; margin-top: -1px;
+    }
+    .exp-bullets li strong { color: var(--white); font-weight: 600; }
+
+    .exp-subrole {
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--muted); margin: 1.2rem 0 0.6rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 700px) {
+      .exp-item { grid-template-columns: 1fr; gap: 1rem; }
     }
 
     /* ── SOBRE MÍ ── */
@@ -643,9 +717,10 @@
   <div class="nav-brand">Luis J. <em>Silva</em></div>
   <div class="nav-links">
     <a href="#sobre-mi">Sobre mí</a>
+    <a href="#experiencia">Experiencia</a>
     <a href="#proyectos">Proyectos</a>
     <a href="#habilidades">Skills</a>
-    <a href="#formacion">Formación</a>
+    <a href="https://www.linkedin.com/in/luis-joaquin-silva" target="_blank" rel="noopener">LinkedIn</a>
     <a href="CV_Luis_Silva_2026.pdf" class="nav-cv" download>↓ CV</a>
   </div>
 </nav>
@@ -654,29 +729,31 @@
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-eyebrow">Control de Gestión · Data Analytics</div>
+      <div class="hero-eyebrow">Disponible para nuevos desafíos · Santiago, Chile</div>
       <h1>Luis Joaquín<br/><em>Silva Navia</em></h1>
+      <p class="hero-role">Jefe de Administración & Finanzas · Control de Gestión Estratégico · Data Analytics</p>
       <p class="hero-lead">
-        Especialista en transformar departamentos financieros en centros de control estratégico,
-        integrando Python, BI y metodologías LEAN para generar valor real en el negocio.
+        8 años transformando departamentos financieros en centros de control estratégico.
+        Integro finanzas, Python y metodologías LEAN para generar valor real — no solo reportes.
       </p>
       <div class="hero-stats">
         <div class="stat-item">
-          <div class="stat-num">6<span>+</span></div>
-          <div class="stat-label">Dashboards en prod.</div>
+          <div class="stat-num">8<span>+</span></div>
+          <div class="stat-label">Años de experiencia</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">30<span>%</span></div>
           <div class="stat-label">Reducción carga ops.</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">2<span>x</span></div>
-          <div class="stat-label">Diplomados PUC</div>
+          <div class="stat-num">6<span>+</span></div>
+          <div class="stat-label">Dashboards en prod.</div>
         </div>
       </div>
       <div class="hero-ctas">
-        <a href="#proyectos" class="btn-primary">Ver proyectos →</a>
+        <a href="#experiencia" class="btn-primary">Ver experiencia →</a>
         <a href="CV_Luis_Silva_2026.pdf" class="btn-outline" download>↓ Descargar CV</a>
+        <a href="https://www.linkedin.com/in/luis-joaquin-silva" class="btn-outline" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
       <div class="hero-tags">
         <span class="tag-sm">Python</span>
@@ -764,10 +841,83 @@
 
 <hr class="divider" />
 
+<!-- ── EXPERIENCIA ── -->
+<section id="experiencia">
+  <div class="container fade-up">
+    <div class="section-label">02 — Trayectoria</div>
+    <h2 class="section-title">Experiencia Profesional</h2>
+    <p class="section-sub">8 años en finanzas corporativas, automatización y control de gestión estratégico</p>
+
+    <div class="exp-list">
+
+      <!-- EMSA -->
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-period">Jul 2023 — Actualidad</div>
+          <div class="exp-company">Embotelladora Metropolitana S.A.</div>
+          <div class="exp-industry">Consumo Masivo</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">
+            Jefe de Administración y Finanzas · Tesorero
+            <span class="exp-role-badge">Actual</span>
+          </div>
+          <ul class="exp-bullets">
+            <li><strong>Transformación digital:</strong> Migré el departamento de un modelo contable tradicional a Control de Gestión basado en datos, construyendo 6 dashboards en producción con Python + Google Sheets API.</li>
+            <li><strong>Implementación LEAN:</strong> Diseñé KPIs operativos para detectar desperdicios (Muda) en la cadena de valor, mejorando el margen de contribución por sucursal.</li>
+            <li><strong>Costeo productivo:</strong> Desarrollé modelos de costeo aplicados a la línea productiva en consumo masivo, optimizando la rentabilidad por producto y punto de venta.</li>
+            <li><strong>Gestión tributaria:</strong> Optimización del flujo de caja y estrategia fiscal ante el SII, asegurando liquidez y cumplimiento sin contingencias.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DUMAY -->
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-period">2018 — Jun 2023</div>
+          <div class="exp-company">Holding Empresas Dumay</div>
+          <div class="exp-industry">Rubro Automotriz</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Tesorero Corporativo / Sales Controller</div>
+          <ul class="exp-bullets">
+            <li><strong>Transformación digital:</strong> Lideré la migración a pagos electrónicos masivos, eliminando la gestión manual de cheques y <strong>reduciendo la carga operativa en un 30%</strong>.</li>
+            <li><strong>Capital de trabajo:</strong> Rediseñé el ciclo de pagos y obligaciones fiscales para maximizar la liquidez mensual del holding.</li>
+            <li><strong>Integración de datos:</strong> Unifiqué la arquitectura de datos entre múltiples ERPs para asegurar una fuente única de verdad entre empresas.</li>
+          </ul>
+          <div class="exp-subrole">Analista de Negocios & Contable (2018 – 2019)</div>
+          <ul class="exp-bullets">
+            <li><strong>Business Intelligence:</strong> Desarrollé dashboards unificados de stock y ventas para decisiones de reabastecimiento en tiempo real.</li>
+            <li><strong>Break-even:</strong> Modelé el punto de equilibrio por sucursal para identificar y corregir unidades deficitarias.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- COLGATE -->
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-period">Jul 2017 — Mar 2018</div>
+          <div class="exp-company">Colgate-Palmolive Chile S.A.</div>
+          <div class="exp-industry">Consumo Masivo · Multinacional</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Asistente de Mejora de Procesos</div>
+          <ul class="exp-bullets">
+            <li><strong>Eficiencia operativa:</strong> Levantamiento de procesos en el ciclo de compras, detectando actividades redundantes y automatizando la carga de datos para acelerar el cierre mensual (Fast Close).</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
 <!-- ── ARQUITECTURA ── -->
 <section id="arquitectura">
   <div class="container fade-up">
-    <div class="section-label">02 — Arquitectura</div>
+    <div class="section-label">03 — Arquitectura</div>
     <h2 class="section-title">Pipeline de Datos</h2>
     <p class="section-sub">Flujo de extremo a extremo: desde SQL Server hasta dashboards en producción</p>
     <div class="arch-diagram">
@@ -805,7 +955,7 @@
 <section id="proyectos">
   <div class="container">
     <div class="fade-up">
-      <div class="section-label">03 — Trabajo</div>
+      <div class="section-label">04 — Trabajo</div>
       <h2 class="section-title">Proyectos</h2>
       <p class="section-sub">Dashboards y sistemas de automatización en producción</p>
     </div>
@@ -953,7 +1103,7 @@
 <section id="habilidades">
   <div class="container">
     <div class="fade-up">
-      <div class="section-label">04 — Stack</div>
+      <div class="section-label">05 — Stack</div>
       <h2 class="section-title">Competencias Técnicas</h2>
       <p class="section-sub">Stack tecnológico orientado al control de gestión y la analítica de datos</p>
     </div>
@@ -1031,7 +1181,7 @@
 <!-- ── FORMACIÓN ── -->
 <section id="formacion">
   <div class="container fade-up">
-    <div class="section-label">05 — Educación</div>
+    <div class="section-label">06 — Educación</div>
     <h2 class="section-title">Formación Académica</h2>
     <p class="section-sub">Educación continua con foco en control estratégico y tecnología</p>
     <div class="timeline">
@@ -1081,7 +1231,7 @@
 <!-- ── CONTACTO ── -->
 <section id="contacto">
   <div class="container fade-up">
-    <div class="section-label">06 — Contacto</div>
+    <div class="section-label">07 — Contacto</div>
     <h2 class="section-title">Trabajemos juntos</h2>
     <p class="section-sub">Abierto a nuevas oportunidades y proyectos de colaboración</p>
     <div class="contact-grid">
@@ -1115,6 +1265,14 @@
         <div class="contact-info">
           <span>GitHub</span>
           <strong>JoaquinSilvaNavia</strong>
+        </div>
+      </a>
+
+      <a class="contact-card" href="https://www.linkedin.com/in/luis-joaquin-silva" target="_blank" rel="noopener">
+        <div class="contact-icon">in</div>
+        <div class="contact-info">
+          <span>LinkedIn</span>
+          <strong>luis-joaquin-silva</strong>
         </div>
       </a>
 
