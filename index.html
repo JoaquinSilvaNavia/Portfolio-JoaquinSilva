@@ -507,14 +507,17 @@
     .exp-bullets li {
       font-size: 0.86rem; color: var(--text);
       line-height: 1.7; font-weight: 300;
-      display: flex; gap: 0.8rem; align-items: flex-start;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 0.75rem;
+      align-items: baseline;
     }
     .exp-bullets li::before {
       content: '›';
       color: var(--blue); font-size: 1.05rem;
-      flex-shrink: 0; margin-top: -1px;
+      flex-shrink: 0;
     }
-    .exp-bullets li strong { color: var(--white); font-weight: 600; }
+    .exp-bullets li strong { color: var(--white); font-weight: 600; font-style: normal; }
 
     .exp-subrole {
       font-size: 0.82rem; font-weight: 600;
@@ -1044,7 +1047,7 @@
         <div class="exp-right">
           <div class="exp-role">Tesorero Corporativo / Sales Controller</div>
           <ul class="exp-bullets">
-            <li><strong>Transformación digital:</strong> Lideré la migración a pagos electrónicos masivos, eliminando la gestión manual de cheques y <strong>reduciendo la carga operativa en un 30%</strong>.</li>
+            <li><strong>Transformación digital:</strong> Lideré la migración a pagos electrónicos masivos, eliminando la gestión manual de cheques y reduciendo la carga operativa en un 30%.</li>
             <li><strong>Capital de trabajo:</strong> Rediseñé el ciclo de pagos y obligaciones fiscales para maximizar la liquidez mensual del holding.</li>
             <li><strong>Integración de datos:</strong> Unifiqué la arquitectura de datos entre múltiples ERPs para asegurar una fuente única de verdad entre empresas.</li>
           </ul>
