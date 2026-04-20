@@ -436,6 +436,10 @@
       transition: border-color 0.2s, transform 0.2s;
     }
     .highlights li:hover { border-color: var(--blue); transform: translateX(4px); }
+    .highlights li.is-link { cursor: pointer; }
+    .highlights li.is-link a.hl-cover {
+      position: absolute; inset: 0; z-index: 1; border-radius: 3px;
+    }
     html.light .highlights li { background: var(--bg2); box-shadow: 0 1px 4px rgba(26,39,68,0.06); }
     html.light .highlights li:hover { box-shadow: 0 2px 12px rgba(37,99,235,0.1); }
     .hl-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
@@ -970,10 +974,11 @@
         </p>
       </div>
       <ul class="highlights">
-        <li>
+        <li class="is-link" style="position:relative;">
+          <a href="#proyectos" class="hl-cover" aria-label="Ver proyectos"></a>
           <div class="hl-icon">📊</div>
           <div class="hl-text">
-            <strong><a href="#proyectos" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--blue);padding-bottom:1px;transition:color 0.2s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='inherit'">Dashboards en producción</a></strong>
+            <strong>Dashboards en producción</strong>
             <span>6 sistemas interconectados con datos en tiempo real vía Vercel</span>
           </div>
         </li>
@@ -991,7 +996,8 @@
             <span>KPIs para detectar desperdicios (Muda) en la cadena de valor</span>
           </div>
         </li>
-        <li>
+        <li class="is-link" style="position:relative;">
+          <a href="#formacion" class="hl-cover" aria-label="Ver formación académica"></a>
           <div class="hl-icon">🎓</div>
           <div class="hl-text">
             <strong>2 Diplomados PUC</strong>
