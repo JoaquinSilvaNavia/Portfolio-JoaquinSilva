@@ -503,21 +503,19 @@
       border: 1px solid var(--tag-border);
       padding: 0.15rem 0.55rem; border-radius: 2px;
     }
-    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
     .exp-bullets li {
       font-size: 0.86rem; color: var(--text);
       line-height: 1.7; font-weight: 300;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 0.75rem;
-      align-items: baseline;
+      padding-left: 1.1rem;
+      position: relative;
     }
     .exp-bullets li::before {
       content: '›';
-      color: var(--blue); font-size: 1.05rem;
-      flex-shrink: 0;
+      color: var(--blue); font-size: 1.1rem;
+      position: absolute; left: 0; top: -1px;
     }
-    .exp-bullets li strong { color: var(--white); font-weight: 600; font-style: normal; }
+    .exp-bullets li strong { color: var(--white); font-weight: 600; }
 
     .exp-subrole {
       font-size: 0.82rem; font-weight: 600;
