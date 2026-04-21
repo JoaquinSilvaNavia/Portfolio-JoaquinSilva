@@ -216,6 +216,18 @@
       width: 28px; height: 1px; background: var(--blue); display: block;
       flex-shrink: 0;
     }
+    .eyebrow-dot {
+      display: inline-block;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #3ecf8e;
+      box-shadow: 0 0 6px #3ecf8e, 0 0 14px rgba(62,207,142,0.5);
+      animation: neon-pulse 2.2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes neon-pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 6px #3ecf8e, 0 0 14px rgba(62,207,142,0.5); }
+      50%       { opacity: 0.55; box-shadow: 0 0 3px #3ecf8e, 0 0 6px rgba(62,207,142,0.25); }
+    }
 
     .hero-text h1 {
       font-family: 'DM Serif Display', serif;
@@ -443,11 +455,18 @@
     html.light .highlights li { background: var(--bg2); box-shadow: 0 1px 4px rgba(26,39,68,0.06); }
     html.light .highlights li:hover { box-shadow: 0 2px 12px rgba(37,99,235,0.1); }
     .hl-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .hl-text { text-align: left; flex: 1; }
     .hl-text strong {
       display: block; font-size: 0.87rem;
       color: var(--white); font-weight: 600; margin-bottom: 2px;
     }
     .hl-text span { font-size: 0.79rem; color: var(--muted); }
+    .hl-arrow {
+      color: var(--blue); font-size: 1rem; flex-shrink: 0;
+      opacity: 0; transition: opacity 0.2s, transform 0.2s;
+      align-self: center;
+    }
+    .highlights li.is-link:hover .hl-arrow { opacity: 1; transform: translateX(3px); }
 
     @media (max-width: 700px) {
       .sobre-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -585,7 +604,7 @@
     }
     .arch-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; color: var(--muted);
+      font-size: 0.6rem; color: var(--blue);
       text-transform: uppercase; letter-spacing: 0.09em;
     }
     .arch-arrow {
@@ -897,7 +916,7 @@
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-eyebrow">Disponible · Santiago, Chile</div>
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Disponible · Santiago, Chile</div>
       <h1>Luis Joaquín<br/><em>Silva Navia</em></h1>
       <p class="hero-role">Jefe de Administración &amp; Finanzas · Control de Gestión · Data Analytics</p>
       <p class="hero-lead">
@@ -981,20 +1000,25 @@
             <strong>Dashboards en producción</strong>
             <span>6 sistemas interconectados con datos en tiempo real vía Vercel</span>
           </div>
+          <div class="hl-arrow">›</div>
         </li>
-        <li>
+        <li class="is-link" style="position:relative;">
+          <a href="#experiencia" class="hl-cover" aria-label="Ver experiencia laboral"></a>
           <div class="hl-icon">⚡</div>
           <div class="hl-text">
             <strong>Automatización de procesos</strong>
             <span>Reducción del 30% en carga operativa mediante ETL Python</span>
           </div>
+          <div class="hl-arrow">›</div>
         </li>
-        <li>
+        <li class="is-link" style="position:relative;">
+          <a href="#experiencia" class="hl-cover" aria-label="Ver implementación LEAN en experiencia"></a>
           <div class="hl-icon">🏭</div>
           <div class="hl-text">
             <strong>Implementación LEAN</strong>
             <span>KPIs para detectar desperdicios (Muda) en la cadena de valor</span>
           </div>
+          <div class="hl-arrow">›</div>
         </li>
         <li class="is-link" style="position:relative;">
           <a href="#formacion" class="hl-cover" aria-label="Ver formación académica"></a>
@@ -1003,6 +1027,7 @@
             <strong>2 Diplomados PUC</strong>
             <span>Control de Gestión y Planificación Estratégica</span>
           </div>
+          <div class="hl-arrow">›</div>
         </li>
       </ul>
     </div>
@@ -1094,27 +1119,27 @@
     <p class="section-sub">Flujo de extremo a extremo: desde SQL Server hasta dashboards en producción</p>
     <div class="arch-diagram">
       <div class="arch-step">
-        <div class="arch-box">SQL Server<br/><span class="mono">INET ERP</span></div>
+        <div class="arch-box">🗄️ SQL Server<br/><span class="mono">INET ERP</span></div>
         <div class="arch-label">Fuente</div>
       </div>
       <div class="arch-arrow">›</div>
       <div class="arch-step">
-        <div class="arch-box">Python ETL<br/><span class="mono">pyodbc · pandas</span></div>
+        <div class="arch-box">🐍 Python ETL<br/><span class="mono">pyodbc · pandas</span></div>
         <div class="arch-label">Procesamiento</div>
       </div>
       <div class="arch-arrow">›</div>
       <div class="arch-step">
-        <div class="arch-box">Google Sheets<br/><span class="mono">gspread API</span></div>
+        <div class="arch-box">📋 Google Sheets<br/><span class="mono">gspread API</span></div>
         <div class="arch-label">Almacén</div>
       </div>
       <div class="arch-arrow">›</div>
       <div class="arch-step">
-        <div class="arch-box">HTML5 + JS<br/><span class="mono">Dashboards</span></div>
+        <div class="arch-box">📊 HTML5 + JS<br/><span class="mono">Dashboards</span></div>
         <div class="arch-label">Visualización</div>
       </div>
       <div class="arch-arrow">›</div>
       <div class="arch-step">
-        <div class="arch-box">Vercel CDN<br/><span class="mono">Auto-deploy</span></div>
+        <div class="arch-box">🚀 Vercel CDN<br/><span class="mono">Auto-deploy</span></div>
         <div class="arch-label">Distribución</div>
       </div>
     </div>
